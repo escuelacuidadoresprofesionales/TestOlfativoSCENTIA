@@ -3,32 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SCENTIA AI · Experiencia Olfativa Ultra-Premium</title>
-<!-- Fuentes de Lujo: Inter (funcional) y Playfair Display (elegancia) -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300..900&display=swap" rel="stylesheet">
+<title>SCENTIA AI · Atelier Privée</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Exo+2:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 /* ------------------------------------- */
 /* 1. CSS VARIABLES & BASE STYLES */
-/* ------------------------------------- */
+/* --- BLACK LABEL LUXURY PALETTE --- */
 :root {
-  --color-gold-primary: #7d5e39; /* Deep Gold/Brown */
-  --color-gold-accent: #b79c6d; /* Light Gold */
-  --color-text-dark: #2c2c2c;
-  --color-text-light: #f7f7f7;
-  --bg-body: #fcfbf8; /* Creamy White */
-  --bg-container: #ffffff;
-  --bubble-bot: #f8f6f2; /* Subtle Cream for Bot */
-  --bubble-user: #e9e0cf; /* Warm Beige for User */
+  --color-primary-dark: #0f0f0f; /* Near Black */
+  --color-secondary-dark: #1a1a1a; /* Card/Bubble Background */
+  --color-accent-gold: #d4ac57; /* Rich, slightly deeper gold */
+  --color-text-light: #f5f5f5; /* Pristine White Text */
+  --color-text-subtle: #aaaaaa; /* Subtle Secondary Text */
+  --bg-body: #000000; /* True Black Body */
+  --bubble-bot: var(--color-secondary-dark); 
+  --bubble-user: #2d2d2d; 
+  --cta-bg: #d4ac57; /* New CTA background color */
+  --cta-text: #0f0f0f; /* New CTA text color */
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Exo 2', sans-serif; /* Modern, clean font */
   margin: 0; padding: 0;
   background-color: var(--bg-body);
   display: flex; justify-content: center; align-items: center;
   min-height: 100vh;
-  color: var(--color-text-dark);
+  color: var(--color-text-light); 
   overflow: hidden;
+  line-height: 1.6;
 }
 
 /* ------------------------------------- */
@@ -36,46 +38,33 @@ body {
 /* ------------------------------------- */
 .chat-container {
   width: 95%; max-width: 950px;
-  background: var(--bg-container);
-  border-radius: 35px;
+  background: var(--color-primary-dark);
+  border-radius: 15px;
   display: flex; flex-direction: column;
   height: 95vh;
-  box-shadow: 0 50px 150px rgba(0, 0, 0, 0.4); /* Dramatic Shadow */
+  box-shadow: 0 0 70px rgba(0, 0, 0, 0.8);
   overflow: hidden;
-  position: relative;
-  border: 1px solid #e0d9cd; /* Subtle Border */
-}
-.bg-overlay {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    /* Subtle geometric texture */
-    background-image: radial-gradient(var(--color-gold-accent) 0.5px, transparent 0.5px);
-    background-size: 250px 250px;
-    opacity: 0.08;
-    pointer-events: none;
-    z-index: 0;
+  border: 1px solid #333;
 }
 .chat-header {
-  background: linear-gradient(90deg, #fffcf7, #f7f0e7);
-  padding: 30px 40px;
+  background: #000000;
+  padding: 30px 40px 20px;
   text-align: center;
   font-family: 'Playfair Display', serif;
-  font-size: 32px; font-weight: 700;
-  color: var(--color-gold-primary);
-  letter-spacing: 3px;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
-  position: relative;
-  z-index: 10;
+  font-size: 34px; 
+  font-weight: 700;
+  color: var(--color-accent-gold); 
+  letter-spacing: 5px; 
   text-transform: uppercase;
+  border-bottom: 4px double var(--color-accent-gold);
 }
 .chat-header span {
     display: block;
-    font-size: 14px;
-    color: #a0a0a0;
-    margin-top: 5px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    letter-spacing: 0.5px;
+    font-size: 16px;
+    color: var(--color-text-subtle);
+    margin-top: 10px;
+    letter-spacing: 3px;
+    font-weight: 300;
 }
 
 /* ------------------------------------- */
@@ -83,555 +72,655 @@ body {
 /* ------------------------------------- */
 .chat-window {
   flex: 1;
-  padding: 30px 40px;
+  padding: 25px 40px;
   overflow-y: auto;
-  background: transparent;
   z-index: 1;
 }
 .message {
-  max-width: 80%;
-  padding: 20px 30px;
-  margin: 15px 0;
-  border-radius: 30px;
-  line-height: 1.6;
-  word-wrap: break-word;
+  max-width: 85%;
+  padding: 18px 22px;
+  margin: 14px 0;
+  border-radius: 20px; 
+  font-size: 16px;
+  border: 1px solid transparent; 
   opacity: 0;
   transform: translateY(15px);
-  animation: message-fade-in 0.7s forwards cubic-bezier(0.2, 0.8, 0.2, 1.0);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  font-size: 17px;
+  animation: message-fade-in 0.3s forwards cubic-bezier(0.2, 0.8, 0.2, 1.0);
 }
 @keyframes message-fade-in { 
     to { opacity: 1; transform: translateY(0); } 
 }
+
 .bot { 
     background: var(--bubble-bot); 
-    border-radius: 30px 30px 30px 8px; 
-    color: var(--color-text-dark);
+    border-color: #2a2a2a;
+    border-radius: 20px 20px 20px 6px; 
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
 }
 .user { 
     background: var(--bubble-user); 
-    border-radius: 30px 30px 8px 30px; 
+    border-radius: 20px 20px 6px 20px; 
     margin-left: auto;
-    color: var(--color-text-dark);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
 }
-.bot strong { color: var(--color-gold-primary); }
+.bot strong { color: var(--color-accent-gold); font-weight: 600; } 
 
-/* Message for Formula Revelation (THE NEW SHOCK FACTOR) */
+.terms-message {
+    border-left: 5px solid var(--color-accent-gold);
+    background: #111;
+    font-weight: 300;
+    animation: pulse-border 1.5s infinite alternate;
+}
+@keyframes pulse-border {
+    from { border-color: var(--color-accent-gold); }
+    to { border-color: rgba(212, 172, 87, 0.5); }
+}
 .revelation-message {
-    font-family: 'Playfair Display', serif;
-    background: var(--color-gold-primary); /* Deep Gold/Brown background */
-    color: var(--color-text-light); /* Creamy White text */
-    font-size: 30px; /* Much larger text */
-    padding: 40px 50px;
-    text-align: center;
-    border-radius: 20px;
-    margin: 50px 0; /* More separation */
-    letter-spacing: 4px; /* Maximum impact spacing */
-    text-transform: uppercase;
-    border: 5px solid var(--bg-body); /* Cream border for maximum contrast and elegance */
-    box-shadow: 0 15px 40px rgba(125, 94, 57, 0.8); /* Intense gold shadow */
-    animation: message-fade-in 1.5s forwards cubic-bezier(0.2, 0.8, 0.2, 1.0), pulse-gold 3s infinite; /* Add pulse effect */
-}
-
-/* Dramatic Pulse Animation for the Revelation Box */
-@keyframes pulse-gold {
-    0% { transform: scale(1); box-shadow: 0 15px 40px rgba(125, 94, 57, 0.8); }
-    50% { transform: scale(1.02); box-shadow: 0 15px 60px rgba(255, 230, 180, 0.9); } /* Lighter, more intense glow */
-    100% { transform: scale(1); box-shadow: 0 15px 40px rgba(125, 94, 57, 0.8); }
-}
-
-
-/* ------------------------------------- */
-/* 4. INPUT & BUTTONS */
-/* ------------------------------------- */
-.chat-input {
-  display: flex;
-  padding: 25px 40px;
-  background: var(--bg-container);
-  border-top: 1px solid #eee;
-  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
-  z-index: 10;
-}
-.chat-input input {
-  flex: 1;
-  padding: 18px 25px;
-  border-radius: 35px;
-  border: 2px solid #ddd;
-  font-size: 18px;
-  transition: border-color 0.4s, box-shadow 0.4s;
-}
-.chat-input input:focus {
-  outline: none;
-  border-color: var(--color-gold-accent);
-  box-shadow: 0 0 15px rgba(179, 143, 79, 0.6); 
-}
-.chat-input button {
-  margin-left: 20px;
-  background: var(--color-gold-primary);
-  border: none;
-  color: var(--color-text-light);
-  font-weight: 700;
-  padding: 18px 35px;
-  border-radius: 35px;
-  cursor: pointer;
-  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
-  letter-spacing: 1px;
-  box-shadow: 0 6px 15px rgba(125, 94, 57, 0.4);
-}
-.chat-input button:hover {
-  background: #6a4f30; /* Darker Gold */
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(125, 94, 57, 0.6);
-}
-
-/* ------------------------------------- */
-/* 5. PERFUME CARD & COMMERCE STYLES */
-/* ------------------------------------- */
-.fragrance-card {
-  background: linear-gradient(145deg, #ffffff, #f7f3ed);
-  border: 4px solid var(--color-gold-primary);
-  padding: 40px;
-  border-radius: 30px;
-  margin-top: 35px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
-  animation: card-pop-in 1.0s forwards cubic-bezier(0.1, 0.7, 1.0, 1.0);
-  position: relative;
-}
-@keyframes card-pop-in {
-    0% { opacity: 0; transform: scale(0.9) translateY(20px); }
-    100% { opacity: 1; transform: scale(1) translateY(0); }
-}
-
-.fragrance-card h3 { 
-    margin: 0 0 5px; 
-    color: var(--color-gold-primary); 
-    font-size: 32px; 
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    letter-spacing: 1px;
-}
-.fragrance-card .subtitle {
-    font-size: 16px;
-    color: #a0a0a0;
-    font-weight: 500;
-    margin-bottom: 30px;
-}
-
-/* New Description Style */
-.description-box {
-    background: var(--bubble-bot);
-    padding: 25px;
-    border-left: 5px solid var(--color-gold-accent);
-    margin: 25px 0;
-    font-style: italic;
-    font-size: 16px;
-    line-height: 1.6;
-    border-radius: 10px;
-}
-
-/* Special Code Box */
-.code-box {
-    text-align: center;
-    padding: 20px;
-    margin: 25px 0;
-    border: 2px dashed var(--color-gold-accent);
-    background: #fdfaf6;
-    border-radius: 15px;
-}
-.code-box p {
-    margin: 0 0 5px 0; 
-    font-size: 14px; 
-    font-weight: 500;
-}
-.special-code {
-    font-size: 1.8em;
-    font-weight: 900;
-    color: #C84630; /* Urgency Color (retained for the code) */
+    background: var(--color-accent-gold); 
+    color: var(--color-primary-dark); 
+    box-shadow: 0 0 50px rgba(212, 172, 87, 0.8); 
+    font-size: 26px; 
+    padding: 35px 45px;
     letter-spacing: 3px;
     font-family: 'Playfair Display', serif;
 }
 
-/* Product Options Layout */
-.product-options {
+/* 4. INPUT & BUTTONS */
+.chat-input {
+  display: flex;
+  padding: 25px 40px;
+  background: var(--color-primary-dark);
+  border-top: 1px solid #333;
+}
+.chat-input input, .chat-input select {
+  padding: 16px 22px;
+  border-radius: 35px;
+  border: 1px solid var(--bubble-user);
+  background: var(--bubble-user); 
+  color: var(--color-text-light);
+  font-size: 17px;
+  margin-right: 10px;
+}
+.chat-input input {
+    flex: 1;
+}
+/* New Phone Input Group Styling */
+.phone-input-group {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 30px;
-    margin-top: 20px;
-    padding-bottom: 30px;
-    border-bottom: 2px solid #f0f0f0;
+    flex: 1;
+    align-items: center;
 }
-.option-group {
-    flex: 1 1 45%; /* Two columns on desktop */
+.phone-input-group select {
+    flex: none; /* Do not stretch the select box */
+    width: 130px; /* fixed width for country code */
+    border-radius: 35px;
+    background-color: var(--bubble-user);
+    color: var(--color-text-light);
+    border: 1px solid var(--bubble-user);
+    appearance: none; /* Remove default arrow */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="%23d4ac57"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" fill-rule="evenodd"></path></svg>');
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 1em;
+    padding-right: 35px;
 }
-.option-group h4 {
+.phone-input-group input {
+    flex: 1;
+    border-left: none; /* visually combine */
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    padding-left: 10px;
+    margin-right: 0;
+}
+.chat-input button {
+  margin-left: 15px;
+  background: var(--color-accent-gold);
+  border: 2px solid var(--color-accent-gold); 
+  color: var(--color-primary-dark);
+  font-weight: 600;
+  padding: 16px 35px;
+  border-radius: 35px;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(212, 172, 87, 0.5);
+  letter-spacing: 1px;
+  transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+/* 5. PRODUCT CARD STYLES */
+.fragrance-card {
+  background: var(--color-secondary-dark); 
+  border: 3px solid var(--color-accent-gold);
+  padding: 40px; 
+  border-radius: 18px;
+  box-shadow: 0 0 40px rgba(212, 172, 87, 0.3);
+}
+.fragrance-card h3 { font-family: 'Playfair Display', serif; font-size: 32px; letter-spacing: 1px;} /* Added for clarity */
+
+.story-box {
+    background: var(--color-primary-dark);
+    padding: 30px;
+    border-radius: 12px;
+    margin: 30px 0 15px;
+    border: 1px solid var(--color-accent-gold);
+    font-style: italic;
     font-size: 16px;
-    color: var(--color-text-dark);
+    box-shadow: 0 0 15px rgba(212, 172, 87, 0.15); /* Subtle inner glow */
+}
+.story-box h4 {
+    font-family: 'Playfair Display', serif;
+    color: var(--color-accent-gold);
+    font-size: 22px;
+    border-bottom: 2px solid var(--color-text-subtle);
+    padding-bottom: 8px;
     margin-bottom: 15px;
-    font-weight: 700;
-    border-bottom: 2px solid var(--bubble-user);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* REPLACING .note-details with .olfactive-pyramid */
+.olfactive-pyramid {
+    margin: 40px 0;
+    text-align: center;
+    position: relative;
+    padding-top: 20px;
+    border-top: 1px solid var(--color-text-subtle);
+}
+.olfactive-pyramid h4 {
+    font-family: 'Playfair Display', serif;
+    color: var(--color-accent-gold);
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+.note-layer {
+    background: var(--color-primary-dark);
+    border: 1px solid var(--color-secondary-dark);
+    padding: 15px 25px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    text-align: left;
+    transition: transform 0.3s ease-in-out;
+}
+.note-layer:hover { transform: scale(1.02); }
+
+.layer-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--color-accent-gold);
+    font-size: 18px;
+    margin-bottom: 5px;
+    font-weight: 600;
+    display: block;
+    border-bottom: 1px dashed var(--color-text-subtle);
     padding-bottom: 5px;
 }
-.selector-btn {
-    display: inline-block;
-    padding: 12px 18px;
-    border: 2px solid #ddd;
-    border-radius: 10px;
+.layer-content {
+    color: var(--color-text-light);
     font-size: 15px;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-weight: 500;
-}
-.selector-btn:hover { border-color: var(--color-gold-accent); }
-.selector-btn.selected {
-    background: var(--color-gold-primary);
-    color: var(--color-text-light);
-    border-color: var(--color-gold-primary);
-    font-weight: 600;
-    transform: scale(1.05);
-}
-
-/* Color Options */
-.color-selection {
-    margin: 30px 0;
-    border-top: 2px solid #f0f0f0;
-    padding-top: 30px;
-}
-.color-selection h4 {
-    font-size: 18px;
-    color: var(--color-text-dark);
-    margin-bottom: 20px;
-    font-weight: 700;
-}
-.color-swatch {
-    display: inline-block;
-    width: 40px; height: 40px;
-    border-radius: 50%;
-    margin-right: 15px;
-    cursor: pointer;
-    border: 3px solid transparent;
-    transition: border-color 0.2s, transform 0.2s;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
-}
-.color-swatch:hover {
-    transform: scale(1.1);
-}
-.color-swatch.selected {
-    border-color: var(--color-gold-primary);
-    box-shadow: 0 0 0 5px #f7f3ed;
-    transform: scale(1.1);
-}
-
-/* Final Buy Button */
-.buy-button {
-    width: 100%;
-    background: var(--color-gold-primary);
-    color: var(--color-text-light);
-    border: none;
-    padding: 20px;
-    border-radius: 15px;
-    font-size: 20px;
-    font-weight: 800;
-    cursor: pointer;
-    margin-top: 30px;
-    box-shadow: 0 10px 30px rgba(125, 94, 57, 0.6);
-    transition: background 0.3s, transform 0.2s;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-}
-.buy-button:hover {
-    background: #6a4f30;
-    transform: translateY(-4px);
-    box-shadow: 0 12px 35px rgba(125, 94, 57, 0.7);
-}
-
-/* Fragrance Note Details */
-.note-details {
-    margin-top: 35px; 
-    border-top: 2px solid #f0f0f0; 
-    padding-top: 25px;
-}
-.note-details p {
-    margin: 8px 0;
-    font-size: 16px;
+    padding-top: 5px;
     line-height: 1.5;
 }
-.note-details strong {
-    color: var(--color-gold-primary);
+
+
+/* Flask and Swatches (Keep previous logic) */
+#flask-preview-container {
+    padding: 30px 20px;
+    border-radius: 12px;
+    border: 2px dashed var(--color-accent-gold);
+    text-align: center;
+}
+#flask-preview-container img {
+    max-width: 180px;
+}
+.color-swatches { display: flex; gap: 15px; margin-top: 15px; justify-content: center; }
+.color-swatch {
+    width: 40px; height: 40px; border-radius: 50%; border: 3px solid var(--color-primary-dark);
+    cursor: pointer; transition: transform 0.2s, border-color 0.3s; box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+.color-swatch.selected { 
+    border-color: var(--color-accent-gold);
+    box-shadow: 0 0 0 2px var(--color-primary-dark), 0 0 0 4px var(--color-accent-gold); 
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .chat-container {
-        border-radius: 0;
-        height: 100vh;
-        width: 100%;
-    }
-    .chat-header {
-        padding: 20px 20px;
-        font-size: 24px;
-    }
-    .chat-window {
-        padding: 20px 20px;
-    }
-    .chat-input {
-        padding: 15px 20px;
-        flex-direction: column;
-    }
-    .chat-input input {
-        margin-bottom: 10px;
-        width: 100%;
-    }
-    .chat-input button {
-        margin-left: 0;
-        width: 100%;
-        padding: 15px;
-    }
-    .product-options {
-        flex-direction: column;
-        gap: 20px;
-    }
-    .option-group {
-        flex: 1 1 100%;
-    }
+/* Typing Indicator (Keep previous logic) */
+.typing-indicator {
+    display: none; align-items: center; max-width: 85%; padding: 18px 22px; margin: 14px 0;
+    border-radius: 20px 20px 20px 6px; background: var(--bubble-bot);
 }
+
+/* --- CTA BAR STYLING (NEW) --- */
+.purchase-cta-bar {
+    background: var(--cta-bg);
+    color: var(--cta-text);
+    box-shadow: 0 -8px 20px rgba(0, 0, 0, 0.5);
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 2px;
+    padding: 20px 35px;
+    margin: 30px -40px -40px; /* Overlap with padding for full width */
+    width: calc(100% + 80px); /* Full width including padding */
+    border: none;
+    border-radius: 0 0 15px 15px; /* Match container border radius */
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background 0.3s, transform 0.3s, opacity 0.3s;
+    text-align: center;
+}
+.purchase-cta-bar:hover { 
+    background: #bb944c; 
+    transform: translateY(-2px);
+    opacity: 0.95;
+}
+
 </style>
 </head>
 <body>
 
 <div class="chat-container">
-  <div class="bg-overlay"></div>
-  <!-- Header: Now says PERFUME PERSONALIZADO -->
-  <div class="chat-header">SCENTIA AI · <span class="text-gold">PERFUME PERSONALIZADO</span></div>
+  <div class="chat-header">SCENTIA AI · <span>ATELIER PRIVÉE</span></div>
   <div id="chat-window" class="chat-window"></div>
+  <div id="typing-indicator" class="typing-indicator"><span></span><span></span><span></span></div>
   <div class="chat-input">
-    <input id="user-input" type="text" placeholder="Escribe tu respuesta...">
+    <div id="current-input" class="phone-input-group">
+        <input id="user-input" type="text" placeholder="Escribe tu respuesta y presiona Enter o Enviar...">
+    </div>
     <button id="send-btn">Enviar</button>
   </div>
 </div>
 
 <script>
-const chatWindow = document.getElementById("chat-window");
-const userInput = document.getElementById("user-input");
-const sendBtn = document.getElementById("send-btn");
+// --- GLOBAL DATA & CONSTANTS ---
+const flaskImages = {
+    'Perla Mate': 'https://i.postimg.cc/Jz91dfR6/Gemini-Generated-Image-f2t76hf2t76hf2t7.png', 
+    'Oro Rosado': 'https://i.postimg.cc/7ZpxQFqB/Gemini-Generated-Image-61s8gg61s8gg61s8.png', 
+    'Negro Ónix': 'https://i.postimg.cc/YCJpy5tJ/Gemini-Generated-Image-xxa54hxxa54hxxa5.png', 
+    'Oro Brillante': 'https://i.postimg.cc/fR6wgGMc/Gemini-Generated-Image-7crlli7crlli7crl.png', 
+    'Esmeralda Oscura': 'https://i.postimg.cc/MphWrCz5/Gemini-Generated-Image-14pzf514pzf514pz.png', 
+    'Rubí Profundo': 'https://i.postimg.cc/L8q9D9F1/Gemini-Generated-Image-5w2ila5w2ila5w2i.png', 
+    'Topacio Ahumado': 'https://i.postimg.cc/6pD91k9X/Gemini-Generated-Image-z7flsuz7flsuz7fl.png' 
+};
 
-// Base Questions (Step 1-4 are for identification and Step 5-10 are for the formula)
+// All steps are now 11
 const baseQuestions = [
-  "<strong>Paso 1/10: Identidad.</strong> Escribe tu <STRONG>nombre de pila</STRONG>.",
-  "<strong>Paso 2/10: Identidad.</strong> Gracias, [NAME]. Ahora, tu <STRONG>apellido</STRONG>.",
-  "<strong>Paso 3/10: Contacto.</strong> [NAME], ingresa tu <STRONG>número de teléfono</STRONG> (Confidencialidad máxima).",
-  "<strong>Paso 4/10: Base.</strong> [NAME], ¿cuál es tu <STRONG>género</STRONG>? (Masculino / Femenino / No Binario / Prefiero no decir).",
-  "<strong>Paso 5/10: Olfativo.</strong> [NAME], ¿qué familias de <STRONG>aromas prefieres</STRONG>? (Cítricos 🍋, Florales 🌸, Amaderados 🌲, Dulces 🍯, Especiados 🌶️, Acuáticos 💧)",
-  "<strong>Paso 6/10: Proyección.</strong> [NAME], ¿prefieres una fragancia suave, <STRONG>moderada</STRONG> (uso diario) o <STRONG>intensa</STRONG> (máxima fijación)?",
-  "<strong>Paso 7/10: Ocasión.</strong> [NAME], ¿en qué <STRONG>contexto principal</STRONG> usarías tu perfume? (Diario/Oficina, Noche/Social, Eventos/Gala, Relajación/Hogar)",
-  "<strong>Paso 8/10: Intención.</strong> [NAME], ¿qué <STRONG>emoción</STRONG> deseas evocar con tu perfume? (Poder/Confianza, Calma/Bienestar, Sensualidad/Misterio, Alegría/Vitalidad)",
-  "<strong>Paso 9/10: Firma Personal.</strong> [NAME], descríbenos brevemente una <STRONG>característica o rasgo único</STRONG> que te defina.",
-  "<strong>Paso 10/10: Ecosistema.</strong> [NAME], ¿deseas que tu perfume combine con otros productos SCENTIA (velas, cremas)? (Sí/No)"
+  "<strong>Paso 0/11: Aceptación Legal.</strong> Al continuar, aceptas los <a href='#' target='_blank'>Términos y Condiciones</a> y la Política de Privacidad de SCENTIA IA. Para aceptar y comenzar, escribe <STRONG>ACEPTO</STRONG>.",
+  "<strong>Paso 1/11: Identidad.</strong> Escribe tu <STRONG>nombre de pila</STRONG>.",
+  "<strong>Paso 2/11: Identidad.</strong> Gracias, [NAME]. Ahora, tu <STRONG>apellido</STRONG>.",
+  "<strong>Paso 3/11: Contacto.</strong> [NAME], ingresa tu <STRONG>número de teléfono</STRONG> (Confidencialidad máxima).",
+  "<strong>Paso 4/11: Base.</strong> [NAME], ¿cuál es tu <STRONG>género</STRONG>? (Masculino / Femenino / No Binario / Prefiero no decir).",
+  "<strong>Paso 5/11: Olfativo.</strong> [NAME], ¿qué familias de <STRONG>aromas prefieres</STRONG>? (Cítricos 🍋, Florales 🌸, Amaderados 🌲, Dulces 🍯, Especiados 🌶️, Acuáticos 💧)",
+  "<strong>Paso 6/11: Proyección.</strong> [NAME], ¿prefieres una fragancia suave, <STRONG>moderada</STRONG> (uso diario) o <STRONG>intensa</STRONG> (máxima fijación)?",
+  "<strong>Paso 7/11: Ocasión.</strong> [NAME], ¿en qué <STRONG>contexto principal</STRONG> usarías tu perfume? (Diario/Oficina, Noche/Social, Eventos/Gala, Relajación/Hogar)",
+  "<strong>Paso 8/11: Intención.</strong> [NAME], ¿qué <STRONG>emoción</STRONG> deseas evocar con tu perfume? (Poder/Confianza, Calma/Bienestar, Sensualidad/Misterio, Alegría/Vitalidad)",
+  "<strong>Paso 9/11: Frasco Atelier.</strong> [NAME], selecciona el <STRONG>color del frasco</STRONG> que encapsulará tu esencia. (Perla Mate, Oro Rosado, Negro Ónix, Oro Brillante, Esmeralda Oscura, Rubí Profundo, Topacio Ahumado).",
+  "<strong>Paso 10/11: Firma Personal.</strong> [NAME], cuéntanos una <STRONG>anécdota breve, un recuerdo significativo o un lugar</STRONG> que haya marcado tu vida. <span style='color: var(--color-text-subtle); font-style: italic; display: block; margin-top: 5px; font-size: 14px;'>(Ejemplo: 'El aroma de las flores de mi abuela' o 'La mañana después de la tormenta en el mar').</span>",
+  "<strong>Paso 11/11: Ecosistema.</strong> [NAME], ¿deseas que tu perfume combine con otros productos SCENTIA (velas, cremas)? (Sí/No)"
 ];
+
+// List of Country Codes (for Step 3)
+const countryCodes = [
+    { code: "+1", name: "EE. UU. / Canadá" }, { code: "+52", name: "México" },
+    { code: "+34", name: "España" }, { code: "+54", name: "Argentina" },
+    { code: "+56", name: "Chile" }, { code: "+57", name: "Colombia" },
+    { code: "+51", name: "Perú" }, { code: "+58", name: "Venezuela" },
+    { code: "+44", name: "Reino Unido" }, { code: "+33", name: "Francia" },
+    { code: "+49", name: "Alemania" }, { code: "+39", name: "Italia" },
+    { code: "+86", name: "China" }, { code: "+91", name: "India" },
+    { code: "+81", name: "Japón" }, { code: "+61", name: "Australia" }
+];
+
+
+// --- DOM ELEMENTS & STATE ---
+const chatWindow = document.getElementById("chat-window");
+const currentInputContainer = document.getElementById("current-input");
+const sendBtn = document.getElementById("send-btn");
+const typingIndicator = document.getElementById("typing-indicator");
 
 let answers = [];
 let currentQuestion = 0;
+let selectedFlaskColor = 'Perla Mate'; // Default
 
+
+// --- CHAT FUNCTIONS ---
+
+// 1. Adds a message bubble to the chat window
 function addMessage(text, sender="bot", className=""){
   const msg = document.createElement("div");
   msg.innerHTML = text; 
+  msg.style.animationDelay = `${(chatWindow.children.length) * 0.05}s`;
   msg.className = "message "+sender + (className ? " " + className : "");
   chatWindow.appendChild(msg);
   chatWindow.scrollTop = chatWindow.scrollHeight;
 }
 
-function botAskNext(){
-  if(currentQuestion < baseQuestions.length){
-    const firstName = answers[0] || "Cliente";
-    let questionText = baseQuestions[currentQuestion];
-    
-    // Personalize the question text with the user's name if available (after step 1)
-    if (currentQuestion > 0 && firstName !== "Cliente") {
-        questionText = questionText.replace('[NAME]', `<STRONG>${firstName}</STRONG>`);
-    }
-
-    setTimeout(()=>addMessage(questionText,"bot"), 800); 
-  } else {
-    // All questions answered, generate the final result
-    setTimeout(generatePerfumeDemo, 1500);
-  }
+// 2. Shows the typing indicator for a specified duration (simulates thinking)
+function showTypingIndicator(duration = 800) {
+    typingIndicator.style.display = 'flex';
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+    return new Promise(resolve => setTimeout(() => {
+        typingIndicator.style.display = 'none';
+        resolve();
+    }, duration));
 }
 
-// FINAL PERFUME RESULT with commercial options
+// 3. Handles the bot asking the next question, incorporating the thinking delay
+async function botAskNext(){
+    if (currentQuestion > 0) {
+        await showTypingIndicator(800); // Wait 0.8s for the bot to "think"
+    }
+    
+    // Check if the input type needs to change (Step 3: Phone, Step 9: Flask Color)
+    if (currentQuestion === 3) { 
+        createPhoneInput();
+    } else if (currentQuestion === 9) {
+        createFlaskColorInput();
+    } else {
+        createStandardInput();
+    }
+
+
+    if(currentQuestion < baseQuestions.length){
+        const firstName = answers[1] || "Cliente"; 
+        let questionText = baseQuestions[currentQuestion];
+        
+        if (currentQuestion > 1 && firstName !== "Cliente") {
+            questionText = questionText.replace('[NAME]', `<STRONG>${firstName}</STRONG>`);
+        }
+
+        addMessage(questionText,"bot", currentQuestion === 0 ? "terms-message" : "");
+    } else {
+        setTimeout(generatePerfumeDemo, 500);
+    }
+}
+
+// 4. Creates the input fields based on the current step
+
+function createStandardInput() {
+    currentInputContainer.innerHTML = `<input id="user-input" type="text" placeholder="Escribe tu respuesta y presiona Enter o Enviar...">`;
+    // Re-bind the enter key and focus
+    const userInput = document.getElementById("user-input");
+    userInput.addEventListener("keypress", handleEnterKey);
+    userInput.focus();
+    currentInputContainer.className = ''; 
+}
+
+function createPhoneInput() {
+    let phoneInputHTML = `
+        <select id="country-code">
+            ${countryCodes.map(c => `<option value="${c.code}">${c.name} (${c.code})</option>`).join('')}
+        </select>
+        <input id="user-input" type="number" placeholder="Ej. 123 456 7890">
+    `;
+    currentInputContainer.innerHTML = phoneInputHTML;
+    currentInputContainer.className = 'phone-input-group';
+    
+    const userInput = document.getElementById("user-input");
+    userInput.addEventListener("keypress", handleEnterKey);
+    userInput.focus();
+}
+
+function createFlaskColorInput() {
+    // Hide standard input fields
+    currentInputContainer.innerHTML = '';
+    currentInputContainer.className = 'color-selection-display'; 
+    sendBtn.disabled = true; // Disable until a color is selected
+
+    // Show the selection interface within the chat window (not input area)
+    addMessage(`
+        <div class="color-selection" style="text-align: center;">
+            <p style="color: var(--color-accent-gold); margin-bottom: 20px;">Selecciona el cristal de tu frasco:</p>
+            <div id="flask-preview-container" style="border: none; padding: 0;">
+                <img id="flask-image" src="${flaskImages[selectedFlaskColor]}" alt="Frasco de Perfume Personalizado" style="max-width: 150px; margin-bottom: 20px; border: 2px solid var(--color-accent-gold); border-radius: 8px;">
+            </div>
+            <div class="color-swatches">
+                <div class="color-swatch selected" title="Perla Mate" onclick="window.selectColor(this)"></div>
+                <div class="color-swatch" title="Oro Rosado" onclick="window.selectColor(this)"></div>
+                <div class="color-swatch" title="Negro Ónix" onclick="window.selectColor(this)"></div>
+                <div class="color-swatch" title="Oro Brillante" onclick="window.selectColor(this)"></div>
+                <div class="color-swatch" title="Esmeralda Oscura" onclick="window.selectColor(this)"></div>
+                <div class="color-swatch" title="Rubí Profundo" onclick="window.selectColor(this)"></div>
+                <div class="color-swatch" title="Topacio Ahumado" onclick="window.selectColor(this)"></div>
+            </div>
+        </div>
+    `, 'bot', 'flask-selection-message');
+    
+    // Now that the selection is visible, we wait for the user to click a color.
+    // The continue action is handled by the selectColor function which enables the button.
+}
+
+
+// --- HANDLERS FOR USER INTERACTION ---
+
+// Handler for the Enter key press
+function handleEnterKey(e){
+    if(e.key==="Enter"){ e.preventDefault(); document.getElementById("send-btn").click(); }
+}
+
+// Global function to handle flask color selection
+window.selectColor = function(element) {
+    const container = element.closest('.color-swatches');
+    container.querySelectorAll('.color-swatch').forEach(swatch => swatch.classList.remove('selected'));
+    element.classList.add('selected');
+
+    const colorName = element.getAttribute('title');
+    selectedFlaskColor = colorName;
+
+    // Update the image preview immediately
+    const flaskImageElement = document.getElementById('flask-image');
+    if (flaskImageElement) {
+        flaskImageElement.src = flaskImages[colorName];
+    }
+    
+    // Re-enable the send button for this specific step
+    sendBtn.disabled = false;
+    sendBtn.textContent = `Confirmar ${colorName}`;
+}
+
+// 5. Main click handler for the 'Enviar' button
+sendBtn.addEventListener("click",()=>{
+    let text = "";
+    const questionIndex = currentQuestion;
+
+    // 1. Retrieve the text based on the input type
+    if (questionIndex === 3) {
+        // Phone number step
+        const countryCode = document.getElementById("country-code").value;
+        const number = document.getElementById("user-input").value.trim();
+        text = countryCode + " " + number;
+    } else if (questionIndex === 9) {
+        // Flask color step - The input is the selected color
+        text = selectedFlaskColor;
+    } else {
+        // Standard text input
+        const userInput = document.getElementById("user-input");
+        text = userInput ? userInput.value.trim() : "";
+    }
+
+
+    // 2. Validation
+    if(!text) {
+        addMessage("⚠️ Por favor, escribe una respuesta.", "bot");
+        return;
+    }
+    if (questionIndex === 0 && text.toUpperCase() !== 'ACEPTO') {
+        addMessage("⚠️ Para continuar con la formulación de tu perfume, debes escribir <STRONG>ACEPTO</STRONG>.", "bot");
+        return;
+    }
+    if ((questionIndex === 1 || questionIndex === 2 || questionIndex === 10) && text.length < 2) {
+        addMessage("⚠️ Por favor, introduce una respuesta válida y completa (mínimo 2 caracteres).", "bot");
+        return;
+    }
+    if (questionIndex === 3 && !/^\+?\d{7,20}$/.test(text.replace(/\s/g, ''))) {
+        addMessage("⚠️ Por favor, introduce un formato de teléfono válido (incluyendo código de país).", "bot");
+        return;
+    }
+
+    
+    // 3. Process and Advance
+    addMessage(text,"user");
+    answers.push(text);
+    // Reset inputs
+    currentInputContainer.innerHTML = `<input id="user-input" type="text" placeholder="Escribe tu respuesta y presiona Enter o Enviar...">`;
+    sendBtn.textContent = "Enviar";
+    sendBtn.disabled = false;
+    
+    currentQuestion++;
+    botAskNext();
+});
+
+// --- PERSONALIZATION LOGIC (UPDATED NARRATIVE FOR SEAMLESSNESS) ---
+function getPersonalizedNotesAndName(answers) {
+    // Note: Memory step is at answers[10]
+    const memory = (answers[10] || '').toLowerCase(); 
+    const intention = answers[8] || "Poder/Confianza";
+    const userMemory = answers[10].length > 45 ? `${answers[10].substring(0, 45)}...` : answers[10];
+    
+    let topNotes, middleNotes, baseNotes, manifestoTitle, perfumeStory;
+    let intentionDesc = intention.split('/')[0]; // Use primary intention for story (e.g., 'Poder')
+
+    // (The complex logic for notes remains the same for consistency)
+    if (memory.includes("mar") || memory.includes("agua") || memory.includes("tormenta")) {
+        topNotes = "Sal Marina (Crisp), Pomelo Blanco, Hojas de Menta Fresca";
+        middleNotes = "Alga Marina (Absolute), Ciprés, Neroli Tunecino"; 
+        baseNotes = "Ámbar Mineral, Vetiver de Java, Musgo Marino";
+        manifestoTitle = "Manifesto Acuático";
+        perfumeStory = `**El Horizonte Inmóvil.** Esta composición evoca la inmensidad del mar, transformando el recuerdo de <STRONG>'${userMemory}'</STRONG> en una nota de fuerza. Su corazón mineral y acuático se fusiona para proyectar una inigualable sensación de <STRONG>${intentionDesc}</STRONG>.`;
+    } else if (memory.includes("abuela") || memory.includes("hogar") || memory.includes("flores")) {
+        topNotes = "Té Blanco de Fujian, Bergamota Siciliana";
+        middleNotes = "Rosa de Mayo, Gardenia, Vainilla Bourbon Cremosa"; 
+        baseNotes = "Almizcle de Piel, Benjuí, Sándalo cremoso";
+        manifestoTitle = "Manifesto Raíz";
+        perfumeStory = `**El Círculo de la Memoria.** La calidez de un hogar y el recuerdo de <STRONG>'${userMemory}'</STRONG> son destilados en esta esencia. Un corazón floral y cremoso que ancla, infundiendo una profunda sensación de <STRONG>${intentionDesc}</STRONG> y reconexión con su origen.`;
+    } else if (memory.includes("fuego") || memory.includes("montaña") || memory.includes("viaje")) {
+        topNotes = "Cardamomo de India, Nuez Moscada, Ron Añejo";
+        middleNotes = "Oud ahumado, Madera de Cedro, Cuero Rústico"; 
+        baseNotes = "Pachulí indonesio, Cacao, Musgo de Roble";
+        manifestoTitle = "Manifesto Aventura";
+        perfumeStory = `**La Estela del Explorador.** Un tributo olfativo al valor del viaje. Su anécdota de <STRONG>'${userMemory}'</STRONG> se traduce en una fragancia audaz, donde maderas y especias se combinan para proyectar una ineludible <STRONG>${intentionDesc}</STRONG>.`;
+    } else if (memory.includes("noche") || memory.includes("misterio") || memory.includes("sensualidad")) {
+        topNotes = "Grosella Negra, Azafrán, Licor de Cereza"; 
+        middleNotes = "Absoluto de Tuberosa, Iris de Florencia, Café Arábica";
+        baseNotes = "Haba Tonka Tostada, Ámbar Negro, Vainilla de Madagascar";
+        manifestoTitle = "Manifesto Nocturno";
+        perfumeStory = `**El Velo de Medianoche.** Una composición oscura y seductora. El deseo de evocar <STRONG>${intentionDesc}</STRONG> se captura con la profundidad del recuerdo de <STRONG>'${userMemory}'</STRONG>. Una estela de misterio y sofisticación que se revela al caer la noche.`;
+    } else {
+        topNotes = "Mandarina Sanguina, Pimienta Rosa, Jengibre Cristalizado";
+        middleNotes = "Jazmín de Egipto, Madera de Cashmere, Incienso de Omán";
+        baseNotes = "Sándalo Mysore, Vainilla Negra, Almizcle Blanco";
+        manifestoTitle = "Manifesto Intemporel";
+        perfumeStory = `**La Firma Atemporal.** Esta creación se inspira en su deseo de manifestar <STRONG>${intentionDesc}</STRONG>. Hemos codificado la esencia de su recuerdo <STRONG>'${userMemory}'</STRONG> en una fragancia de elegancia universal y uso diario.`;
+    }
+    
+    const firstNameInitial = (answers[1] || "C").charAt(0).toUpperCase();
+    const perfumeName = `Sello Privée ${firstNameInitial} - ${manifestoTitle}`;
+
+    return { topNotes, middleNotes, baseNotes, perfumeName, perfumeStory };
+}
+
+// 6. FINAL PERFUME RESULT (UPDATED VISUALS AND CTA)
 function generatePerfumeDemo(){
-  const firstName = answers[0] || "Cliente";
-  const firstInitial = firstName.charAt(0).toUpperCase();
-  const lastName = answers[1] || "";
+  const firstName = answers[1] || "Cliente";
+  const lastName = answers[2] || "";
+  const projection = answers[6] ? answers[6].toLowerCase() : 'moderada';
   
-  // Dynamic Perfume Name Generation
-  const perfumeName = `El Sello ${firstInitial}: Manifesto Privée`;
+  const { topNotes, middleNotes, baseNotes, perfumeName, perfumeStory } = getPersonalizedNotesAndName(answers);
+  const selectedFlask = answers[9]; // The color chosen in step 9
+  const concentrationRec = projection.includes('intensa') ? 'Elixir' : 'Eau de Parfum (EDP)';
   
   const perfumeData = {
     nombre_perfume_completo: perfumeName,
-    codigo_olfativo: `SCNT-P${firstInitial}-${Date.now().toString().slice(-4)}-LUX`, // Unique ID
-    notas_top: "Bergamota de Calabria 🍋 (Alta pureza), Pera Nashi, Pimienta Rosa",
-    notas_middle: "Jazmín Sambac, Rosa Búlgara, Madera de Cashmere 🪵",
-    notas_base: "Sándalo Mysore 🌲, Vainilla de Madagascar, Almizcle Blanco ☁️",
-    intensidad: "Máxima Proyección (Elixir)",
-    emociones: "Poder/Confianza ✨ y Sensualidad/Misterio 🌑",
-    
-    descripcion: `SCENTIA ha destilado tu <STRONG>firma personal</STRONG> en una esencia única. Esta composición está diseñada para manifestar <STRONG>${answers[7]}</STRONG> y reflejar tu rasgo único de <STRONG>${answers[8]}</STRONG>. La apertura es un desafío cítrico-especiado que exige atención; el corazón floral es la expresión de tu elegancia atemporal; y el fondo de Sándalo de Mysore es tu legado, profundo, persistente e ineludible.`
+    codigo_olfativo: `SCNT-${firstName.toUpperCase().slice(0, 3)}${Date.now().toString().slice(-4)}-LUX`,
+    notas_top: topNotes,
+    notas_middle: middleNotes,
+    notas_base: baseNotes,
+    emociones: answers[8] || "Poder/Confianza",
+    concentration: concentrationRec,
+    descripcion: `SCENTIA ha destilado su memoria y su intención en una <STRONG>carta olfativa</STRONG> única. Esta composición no es una fragancia, sino su historia, ahora codificada en la piel.`
   };
   
-  // Step 1: Show Formula Confirmation (THE SHOCK)
-  // New, highly dramatic message using brand colors and pulsing animation
   addMessage(`***CÓDIGO CERRADO.*** SCENTIA IA: HAS TRASCENDIDO LA ELECCIÓN. ESTE ES TU MANIFIESTO PERSONAL.`, "bot", "revelation-message");
-  
-  // Follow-up message before the card
   addMessage(`🎉 <STRONG>¡Felicidades, ${firstName} ${lastName}!</STRONG> Esta es la revelación de tu esencia: <STRONG>${perfumeData.nombre_perfume_completo}</STRONG>.`, "bot");
 
 
   const card = document.createElement("div");
   card.className="fragrance-card";
+  
   card.innerHTML = `
-    <h3 style="margin-bottom: 5px;">${perfumeData.nombre_perfume_completo}</h3>
-    <div class="subtitle">Creación Personalizada | Evoca: ${perfumeData.emociones}</div>
+    <h3 style="margin-bottom: 5px; color: var(--color-accent-gold); font-family: 'Playfair Display', serif; font-size: 32px;">${perfumeData.nombre_perfume_completo}</h3>
+    <div class="subtitle" style="color: var(--color-text-subtle); margin-bottom: 30px;">
+        Firma Olfativa | Frasco: <STRONG>${selectedFlask}</STRONG> | ${perfumeData.concentration}
+    </div>
     
-    <!-- NEW: Description Box - The narrative -->
-    <div class="description-box">
-        ${perfumeData.descripcion}
+    <div class="story-box">
+        <h4>Historia Olfativa - La Firma de la Memoria</h4>
+        ${perfumeStory}
     </div>
 
-    <div class="code-box">
-        <p><STRONG>Tu Código de Creación Olfativa Privada:</STRONG></p>
-        <div class="special-code">${perfumeData.codigo_olfativo}</div>
+    <div id="final-flask-preview-container" style="text-align: center; margin: 30px 0;">
+        <img src="${flaskImages[selectedFlask]}" alt="Frasco de Perfume ${selectedFlask}" style="max-width: 180px; border: 4px solid var(--color-accent-gold); border-radius: 10px;">
     </div>
     
-    <div class="product-options">
+    <div class="olfactive-pyramid">
+        <h4>Arquitectura Olfativa de Tres Actos</h4>
         
-        <div class="option-group">
-            <h4>Volumen Exclusivo</h4>
-            <!-- Limited to 50 ML and 100 ML -->
-            <div class="selector-btn selected" onclick="selectOption(this)">50 ML</div>
-            <div class="selector-btn" onclick="selectOption(this)">100 ML</div>
-        </div>
-        
-        <div class="option-group">
-            <h4>Concentración de Lujo</h4>
-            <!-- Limited to Eau de Parfum and Elixir -->
-            <div class="selector-btn" onclick="selectOption(this)">Eau de Parfum (EDP)</div>
-            <div class="selector-btn selected" onclick="selectOption(this)">Elixir (Máx. Fijación)</div>
+        <div class="note-layer">
+            <span class="layer-title">🔺 ACTO I: APERTURA (Notas de Salida)</span>
+            <div class="layer-content">${perfumeData.notas_top}</div>
         </div>
         
-        <div class="option-group">
-            <h4>Servicio Adicional</h4>
-            <!-- Limited to Grabado de Iniciales or None -->
-            <div class="selector-btn selected" onclick="selectOption(this)">Grabado de Iniciales</div>
-            <div class="selector-btn" onclick="selectOption(this)">Ninguno</div>
+        <div class="note-layer">
+            <span class="layer-title">🌿 ACTO II: CORAZÓN (Notas Medias)</span>
+            <div class="layer-content">${perfumeData.notas_middle}</div>
         </div>
-
-    </div>
-    
-    <!-- Notes Up (Detailed View) -->
-    <div class="note-details">
-        <p style="font-family: 'Playfair Display', serif; font-size: 18px; font-style: italic; color: ${getComputedStyle(document.documentElement).getPropertyValue('--color-gold-primary').trim()};">Arquitectura Olfativa de Tres Actos:</p>
-        <p>💧 <STRONG>Acto I (Apertura)</STRONG>: ${perfumeData.notas_top}</p>
-        <p>🌸 <STRONG>Acto II (Corazón)</STRONG>: ${perfumeData.notas_middle}</p>
-        <p>🌲 <STRONG>Acto III (Fondo)</STRONG>: ${perfumeData.notas_base}</p>
-    </div>
-
-    <div class="color-selection">
-        <h4>Personalización de Frasco (Estuche de Cristal)</h4>
-        <div class="color-swatches">
-            <!-- Colores de Lujo -->
-            <div class="color-swatch selected" style="background-color: #f7f3ed;" title="Perla Mate" onclick="selectColor(this)"></div>
-            <div class="color-swatch" style="background-color: #aa9578;" title="Oro Rosado" onclick="selectColor(this)"></div>
-            <div class="color-swatch" style="background-color: #3f3e3a;" title="Negro Ónix" onclick="selectColor(this)"></div>
-            <div class="color-swatch" style="background-color: #c7a44f;" title="Oro Brillante" onclick="selectColor(this)"></div>
-            <div class="color-swatch" style="background-color: #557760;" title="Esmeralda Oscura" onclick="selectColor(this)"></div>
+        
+        <div class="note-layer">
+            <span class="layer-title">🗄️ ACTO III: FONDO (Notas Base)</span>
+            <div class="layer-content">${perfumeData.notas_base}</div>
         </div>
     </div>
-    
-    <button class="buy-button">CREAR MI MANIFIESTO PRIVÉE (${firstName.toUpperCase()})</button>
 
+    <div class="signature-block">
+        <strong>Firma Olfativa Certificada por SCENTIA ATELIER</strong>
+        <p>Destilado para: ${firstName} ${lastName}</p>
+        <p>Concentración: ${perfumeData.concentration}</p>
+        <div class="code">${perfumeData.codigo_olfativo}</div>
+    </div>
+    
+    <button class="purchase-cta-bar">
+        PASAR A LA PÁGINA DE COMPRA Y DESTILACIÓN
+    </button>
   `;
   
-  // Script para manejar la selección de opciones dentro de la tarjeta
-  card.querySelector('.buy-button').addEventListener('click', () => {
-      const finalFirstName = answers[0] || "Cliente";
-      const message = `Tu esencia ${perfumeData.nombre_perfume_completo} se registrará con el Código ${perfumeData.codigo_olfativo}. Tu creación ha sido enviada al Atelier para su destilación.`;
+  // Checkout script (Updated for the 'Compra' transition look)
+  card.querySelector('.purchase-cta-bar').addEventListener('click', () => {
+      const finalFirstName = answers[1] || "Cliente";
+      const message = `Su esencia ha sido transferida a la <STRONG>Página de Compra Segura</STRONG>. El Atelier Privée registrará el inicio de la destilación de su Sello: ${perfumeData.codigo_olfativo}.`;
       
-      // Simple custom dialog simulation (no alert/confirm)
+      const accentGold = getComputedStyle(document.documentElement).getPropertyValue('--color-accent-gold').trim();
+      const primaryDark = getComputedStyle(document.documentElement).getPropertyValue('--color-primary-dark').trim();
+      const textLight = getComputedStyle(document.documentElement).getPropertyValue('--color-text-light').trim();
+
       const dialog = document.createElement('div');
-      dialog.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; display: flex; justify-content: center; align-items: center;';
+      dialog.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 9999; display: flex; justify-content: center; align-items: center;';
       dialog.innerHTML = `
-          <div style="background: white; padding: 40px; border-radius: 20px; text-align: center; max-width: 450px; box-shadow: 0 15px 40px rgba(0,0,0,0.8); animation: popin 0.4s forwards;">
-              <h4 style="color: ${getComputedStyle(document.documentElement).getPropertyValue('--color-gold-primary').trim()}; font-family: 'Playfair Display', serif; font-size: 30px; margin-top: 0; letter-spacing: 1px;">Destilación en Proceso</h4>
+          <div style="background: ${primaryDark}; padding: 40px; border-radius: 20px; text-align: center; max-width: 450px; box-shadow: 0 15px 40px rgba(0,0,0,0.7); animation: popin 0.4s forwards; color: ${textLight}; border: 3px solid ${accentGold};">
+              <h4 style="color: ${accentGold}; font-family: 'Playfair Display', serif; font-size: 30px; margin-top: 0; letter-spacing: 1px;">Transición a Compra</h4>
               <p style="font-size: 17px; line-height: 1.7; margin-bottom: 30px;">
-                <STRONG>¡Gracias, ${finalFirstName}!</STRONG> ${message}
+                <STRONG>¡Felicidades!</STRONG> ${message}
               </p>
-              <button onclick="this.closest('div').remove()" style="background: ${getComputedStyle(document.documentElement).getPropertyValue('--color-gold-primary').trim()}; color: white; border: none; padding: 15px 30px; border-radius: 12px; cursor: pointer; font-weight: 700; text-transform: uppercase;">Aceptar y Explorar</button>
+              <button onclick="this.closest('div').remove()" style="background: ${accentGold}; color: var(--color-primary-dark); border: none; padding: 15px 30px; border-radius: 12px; cursor: pointer; font-weight: 700; text-transform: uppercase;">Finalizar Consulta</button>
           </div>
           <style>@keyframes popin { from { opacity: 0; transform: scale(0.7); } to { opacity: 1; transform: scale(1); } }</style>
       `;
       document.body.appendChild(dialog);
   });
 
-  // Append card after messages
   setTimeout(() => {
       chatWindow.appendChild(card);
       chatWindow.scrollTop = chatWindow.scrollHeight;
   }, 500);
 }
 
-function selectOption(element) {
-    const group = element.closest('.option-group');
-    group.querySelectorAll('.selector-btn').forEach(btn => btn.classList.remove('selected'));
-    element.classList.add('selected');
-}
-
-function selectColor(element) {
-    const container = element.closest('.color-swatches');
-    container.querySelectorAll('.color-swatch').forEach(swatch => swatch.classList.remove('selected'));
-    element.classList.add('selected');
-}
-
-
-// Events
-sendBtn.addEventListener("click",()=>{
-  const text = userInput.value.trim();
-  const questionIndex = currentQuestion;
-
-  if(!text) {
-    addMessage("⚠️ Por favor, escribe una respuesta.", "bot");
-    return;
-  }
-
-  // Q1 (Index 0) and Q2 (Index 1) are First Name and Last Name.
-  if ((questionIndex === 0 || questionIndex === 1) && text.length < 2) {
-      addMessage("⚠️ Por favor, introduce una respuesta válida y completa (mínimo 2 caracteres).", "bot");
-      return;
-  }
-
-  // Q3 (Index 2) is Phone Number.
-  if (questionIndex === 2 && !/^\+?\d{7,15}$/.test(text)) {
-      addMessage("⚠️ Por favor, introduce un formato de teléfono válido (solo números, mínimo 7 dígitos).", "bot");
-      return;
-  }
-  
-  addMessage(text,"user");
-  answers.push(text);
-  userInput.value="";
-  currentQuestion++;
-  botAskNext();
-});
-
-userInput.addEventListener("keypress", e=>{
-  if(e.key==="Enter"){ e.preventDefault(); sendBtn.click(); }
-});
-
 // Start conversation
-// Initial message: Uses "perfume personalizado"
 addMessage("👋 Hola. Soy <STRONG>SCENTIA IA</STRONG>, tu asistente privado. Iniciaremos la formulación de tu <STRONG>perfume personalizado</STRONG>.", "bot");
-botAskNext();
+botAskNext(); 
 </script>
 </body>
 </html>
